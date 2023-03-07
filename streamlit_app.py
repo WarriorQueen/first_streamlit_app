@@ -14,8 +14,8 @@ my_fruit_list=pandas.read_csv('https://uni-lab-files.s3.us-west-2.amazonaws.com/
 # Make the fruit name column the index column
 my_fruit_list=my_fruit_list.set_index('Fruit')
 
-# Include a multi-select list so a user can pick fruits from the fruit list on the website
-streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index))
+# Include a multi-select list so a user can pick fruits from the fruit list on the website. Include two fruits as examples.
+streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index),['Avocado','Strawberries'])
 
 # Display fruit table on page
 streamlit.dataframe(my_fruit_list)
