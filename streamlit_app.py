@@ -51,7 +51,7 @@ streamlit.header("The fruit load list contains:")
 
 #Add function for getting fruit list from Snowflake
 def get_fruit_load_list():
-    with my_cnx.cursor() AS my_cur:
+    with my_cnx.cursor() as my_cur:
         my_cur.execute("SELECT * FROM PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST")
         return my_cur.fetchall()
     
