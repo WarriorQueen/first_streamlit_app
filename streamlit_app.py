@@ -38,3 +38,6 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_c
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # Insert flattened data into a dataframe. The website will show the data in a table.
 streamlit.dataframe(fruityvice_normalized)
+
+#use below library
+import snowflake.connector
