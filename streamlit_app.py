@@ -31,19 +31,20 @@ streamlit.dataframe(fruits_to_show)
 
 #Display Fruityvice API response
 streamlit.header("Fruityvice Fruit Advice!")
+try:
+    fruit_choice = streamlit.text_input('What fruit would you like information about?')
+    if not fruit_choice:
+        streamlit.error("Please select a fruit to get information.")
+    else:
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+        fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+        streamlit.dataframe(fruityvice_normalized)
+except URLError as e:
+    streamlit.error()
+        
+#streamlit.write('The user entered ', fruit_choice)
 
-#Create a text input variable called 'fruit_choice' that requires a text input with the fruit name. Default is Kiwi.
-fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
-#The sentence 'The user entered [fruit_choice]' will be printed on the webpage
-streamlit.write('The user entered ', fruit_choice)
 
-
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-
-# Flatten the json data into a tabular format
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-# Insert flattened data into a dataframe. The website will show the data in a table.
-streamlit.dataframe(fruityvice_normalized)
 
 #stop for troubleshooting
 streamlit.stop()
