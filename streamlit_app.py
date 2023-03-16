@@ -54,3 +54,6 @@ streamlit.dataframe(my_data_rows)
 fruit_add=streamlit.text_input('What fruit would you like to add?','jackfruit')
 #write sentence after user inputs fruit
 streamlit.write('Thanks for adding',fruit_add)
+
+#Dynamically change fruit list on website
+my_cur.execute("insert into fruit_load_list values ('from streamlit')")
